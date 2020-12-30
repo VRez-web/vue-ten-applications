@@ -1,15 +1,13 @@
 <template>
   <AppHeader />
-  <!-- <DcHeroes /> -->
-  <Calendar />
+  
+  <router-view></router-view>
 </template>
 
 <script>
 import AppHeader from "./components/AppHeader";
-import Calendar from './components/Calendar';
-// import DcHeroes from "./components/DcHeroes";
 export default {
-  components: { AppHeader,Calendar },
+  components: { AppHeader },
   mounted() {},
 };
 </script>
