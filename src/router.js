@@ -6,6 +6,7 @@ import DcHearoes from './pages/DcHeroes'
 import Calendar from './pages/Calendar'
 import Home from './pages/Home'
 import Markdown from './pages/Markdown'
+import Slider from './pages/Slider'
 
 const routes = [
     {
@@ -24,7 +25,12 @@ const routes = [
         path: '/markdown',
         component: Markdown
     },
+    {
+        path: '/slider',
+        component: Slider
+    },
 ]
+
 const router = createRouter({
     history: createWebHistory(),
     routes,

@@ -8,6 +8,7 @@
         :key="item.to"
         >{{ item.title }}</router-link
       >
+      <button @click="$emit('open-login-modal')">Login</button>
     </nav>
   </header>
 </template>
@@ -17,9 +18,10 @@ export default {
   data() {
     return {
       list: [
-        { title: " DC Heroes", to: "/dcHeroes" },
-        { title: "Calendar", to: "/calendar" },
-        { title: "Markdown", to: "/markdown" },
+        { title: " DC Герои", to: "/dcHeroes" },
+        { title: "Календарь", to: "/calendar" },
+        { title: "Текст ту код", to: "/markdown" },
+        {title:'Слайдер', to:'/slider'},
       ],
     };
   },
