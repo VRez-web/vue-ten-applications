@@ -8,22 +8,36 @@
         :key="item.to"
         >{{ item.title }}</router-link
       >
-      <button @click="$emit('open-login-modal')">Login</button>
+      <button v-if="isLoggedIn" @click="logout">Выйти</button>
+      <button v-else @click="$emit('open-login-modal')">Войти</button>
     </nav>
   </header>
 </template>
 
 <script>
+import firebase from "../utilities/firebase";
 export default {
+  props: { 'isLoggedIn': Boolean },
   data() {
     return {
       list: [
         { title: " DC Герои", to: "/dcHeroes" },
         { title: "Календарь", to: "/calendar" },
         { title: "Текст ту код", to: "/markdown" },
-        {title:'Слайдер', to:'/slider'},
+        { title: "Слайдер", to: "/slider" },
       ],
     };
+  },
+  methods: {
+    logout() {
+      firebase.auth().signOut();
+      // .then(() => {
+      //   // Sign-out successful.
+      // })
+      // .catch((e) => {
+      //   // An error happened.
+      // });
+    },
   },
 };
 </script>

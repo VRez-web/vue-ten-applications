@@ -6,44 +6,50 @@
     </li>
   </ul>
   <form @submit.prevent="addHero">
-    <input type="text" v-model="newHero" placeholder="Type name hero here" />
+    <input
+      type="text"
+      v-model="newHero"
+      placeholder="Type name hero here"
+      ref="newHeroRef"
+    />
     <button>Add Hero</button>
   </form>
 </template>
 
 <script>
+import { computed, onMounted, ref } from "vue";
 export default {
- data() {
-    return {
-      newHero: "",
-      dcHeroes: [
-        { name: "SuperGirl" },
-        { name: "Flash" },
-        { name: "Arrow" },
-        { name: "Superman" },
-        { name: "Batman" },
-      ],
-    };
-  },
-    methods: {
-    addHero() {
-      if (this.newHero !== "") {
-        this.dcHeroes.push({ name: this.newHero });
-        this.newHero = "";
+  setup() {
+    const newHeroRef = ref("");
+    const newHero = ref("");
+    const dcHeroes = ref([
+      { name: "SuperGirl" },
+      { name: "Flash" },
+      { name: "Arrow" },
+      { name: "Superman" },
+      { name: "Batman" },
+    ]);
+
+    onMounted(() => {
+      newHeroRef.value.focus();
+    });
+    function remove(index) {
+      dcHeroes.value = dcHeroes.value.filter((hero, i) => i != index);
+    }
+    function addHero() {
+      if (newHero.value !== "") {
+        dcHeroes.value.push({ name: newHero.value });
+        newHero.value = "";
       }
-    },
-    remove(index) {
-      this.dcHeroes = this.dcHeroes.filter((hero, i) => i != index);
-    },
+    }
+    const countHeroes = computed({
+      get: () => dcHeroes.value.length,
+    });
+    return { dcHeroes, newHero, remove, addHero, newHeroRef, countHeroes };
   },
-  computed: {
-    countHeroes() {
-      return this.dcHeroes.length;
-    },
-  },
-}
+  computed: {},
+};
 </script>
 
 <style>
-
 </style>

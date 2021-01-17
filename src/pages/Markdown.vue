@@ -3,7 +3,7 @@
     <h1 class="markdown__title">Markdown app</h1>
     <div class="markdown__inner">
       <article class="markdown__item">
-        <textarea v-model="text" @input="update"></textarea>
+        <textarea v-model="text" @input="update" ref="markdownTextArea"></textarea>
       </article>
       <article class="markdown__item" v-html="markedText"></article>
     </div>
@@ -19,6 +19,9 @@ export default {
     return {
       text: "",
     };
+  },
+  mounted(){
+    this.$refs.markdownTextArea.focus()
   },
   computed: {
     markedText() {

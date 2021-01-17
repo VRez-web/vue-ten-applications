@@ -1,13 +1,19 @@
 <template>
   <section class="modal">
-    <div class="modal__bg" @click="$emit('close-login')"></div>
+    <div class="modal__bg" @click="close"></div>
     <div class="modal__wrapper">
       <div class="modal__content">
         <h1 class="modal__title">Логин</h1>
+        <LoginWithGoogle @close-login-from-google='close'/>
+        <p class="modal__choice">Или</p>
         <form action="" class="modal__form" @submit.prevent="submit">
           <div class="modal__form-group">
             <label>Email или Логин</label>
-            <input placeholder="Введите ваш Email или Логин" v-model="email" />
+            <input
+              placeholder="Введите ваш Email или Логин"
+              v-model="email"
+              ref="emailRef"
+            />
           </div>
           <div class="modal__form-group">
             <label>Пароль</label>
@@ -17,7 +23,10 @@
               v-model="password"
             />
           </div>
-          <button type="submit">Войти</button>
+          <button type="submit">
+            <span v-if="!isLoading">Войти</span>
+            <span v-else>⌛</span>
+          </button>
         </form>
       </div>
     </div>
@@ -26,25 +35,40 @@
 
 <script>
 import firebase from "../utilities/firebase";
+import LoginWithGoogle from "./login/WithGoogle";
 export default {
+  components: { LoginWithGoogle },
   data() {
     return {
       email: "",
       password: "",
+      isLoading: false,
     };
   },
   methods: {
     submit() {
+      this.isLoading = true;
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
+          this.email = "";
+          this.password = "";
+          this.isLoading = false;
+          this.close();
         })
         .catch((e) => {
           console.log(e);
+          this.isLoading = false;
         });
     },
+    close() {
+      this.$emit("close-login");
+    },
+
+  },
+  mounted() {
+    this.$refs.emailRef.focus();
   },
 };
 </script>
@@ -111,5 +135,21 @@ export default {
 }
 .modal__form button:hover {
   background-position: right center;
+}
+.modal__login-google {
+  margin-bottom: 10px;
+}
+.modal__login-google button {
+  width: 100%;
+  background-color: #df4c2c;
+  border: none;
+  padding: 5px 0;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+.modal__choice {
+  text-align: center;
 }
 </style>
