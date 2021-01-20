@@ -25,6 +25,7 @@ export default {
         { title: "Календарь", to: "/calendar" },
         { title: "Текст ту код", to: "/markdown" },
         { title: "Слайдер", to: "/slider" },
+        {title:'Калькультор', to:'/calculator'}
       ],
     };
   },
