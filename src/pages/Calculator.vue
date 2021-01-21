@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import { onMounted, onUnmounted, ref } from "vue";
-import func from "../../vue-temp/vue-editor-bridge";
+import { ref,onMounted,onUnmounted } from "vue";
+// import func from "../../vue-temp/vue-editor-bridge";
 export default {
   setup() {
     const operations = ["+", "-", "*", "/"];
@@ -64,25 +64,20 @@ export default {
       prevNumber.value = "";
       selectedOperation.value = "";
     }
-    function multiply() {
-      currentNumber.value = prevNumber.value * currentNumber.value;
-    }
-    function divide() {
-      currentNumber.value = prevNumber.value / currentNumber.value;
-    }
-    function subtract() {
-      currentNumber.value = prevNumber.value - currentNumber.value;
-    }
-    function sum() {
-      currentNumber.value = +prevNumber.value + +currentNumber.value;
-    }
-    function clear() {
-      currentNumber.value = "";
-    }
-    function handleKeydown(e) {
-      pressed(e.key);
-      console.log(e.key);
-    }
+    const multiply = () =>
+      (currentNumber.value = prevNumber.value * currentNumber.value);
+
+    const divide = () =>
+      (currentNumber.value = prevNumber.value / currentNumber.value);
+
+    const subtract = () =>
+      (currentNumber.value = prevNumber.value - currentNumber.value);
+
+    const sum = () =>
+      (currentNumber.value = +prevNumber.value + +currentNumber.value);
+
+    const clear = () => (currentNumber.value = "");
+    const handleKeydown=(e)=> pressed(e.key);
     onMounted(() => window.addEventListener("keydown", handleKeydown));
     onUnmounted(() =>window.removeEventListener("keydown", handleKeydown));
     return { currentNumber, pressed, selectedOperation, prevNumber };
