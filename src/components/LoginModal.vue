@@ -139,16 +139,6 @@ export default {
 .modal__login-google {
   margin-bottom: 10px;
 }
-.modal__login-google button {
-  width: 100%;
-  background-color: #df4c2c;
-  border: none;
-  padding: 5px 0;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  outline: none;
-}
 .modal__choice {
   text-align: center;
 }

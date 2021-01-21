@@ -3,7 +3,11 @@
     <h1 class="markdown__title">Markdown app</h1>
     <div class="markdown__inner">
       <article class="markdown__item">
-        <textarea v-model="text" @input="update" ref="markdownTextArea"></textarea>
+        <textarea
+          v-model="text"
+          @input="update"
+          ref="markdownTextArea"
+        ></textarea>
       </article>
       <article class="markdown__item" v-html="markedText"></article>
     </div>
@@ -12,31 +16,30 @@
 
 <script>
 import marked from "marked";
-import debounce from "../utilities/mixins/debounce";
+import useDebounce from "../utilities/composition/useDebounce";
 export default {
-  mixins: [debounce],
   data() {
     return {
       text: "",
+      debounce:'',
     };
   },
-  mounted(){
-    this.$refs.markdownTextArea.focus()
-  },
+
   computed: {
     markedText() {
       return marked(this.text);
-    }
+    },
   },
   methods: {
     update(e) {
-      const task = () => (this.text = e.target.value);
+      const task = () => (this.text = e.target.value);  
       this.debounce(task, 500);
     },
-    debounce() {
-      console.log("im from markdown");
-    }
-  }
+  },
+    mounted() {
+    this.debounce =  useDebounce()
+    this.$refs.markdownTextArea.focus();
+  },
 };
 </script>
 

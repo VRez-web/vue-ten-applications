@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import { ref,onMounted,onUnmounted } from "vue";
-// import func from "../../vue-temp/vue-editor-bridge";
+import { ref } from "vue";
+import useWindowEvent from '../utilities/composition/useWindowEvent'
 export default {
   setup() {
     const operations = ["+", "-", "*", "/"];
@@ -78,8 +78,7 @@ export default {
 
     const clear = () => (currentNumber.value = "");
     const handleKeydown=(e)=> pressed(e.key);
-    onMounted(() => window.addEventListener("keydown", handleKeydown));
-    onUnmounted(() =>window.removeEventListener("keydown", handleKeydown));
+    useWindowEvent("keydown",handleKeydown)
     return { currentNumber, pressed, selectedOperation, prevNumber };
   },
 };
@@ -96,7 +95,7 @@ export default {
 }
 .calculator__text {
   width: 100%;
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: right;
   overflow-x: scroll;
   height: 55px;
