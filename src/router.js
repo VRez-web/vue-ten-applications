@@ -9,6 +9,7 @@ import Markdown from './pages/Markdown'
 import Slider from './pages/Slider'
 import Calculator from './pages/Calculator'
 import ReuseableModal from './pages/ReuseableModal'
+import Chat from './pages/Chat'
 
 const routes = [
     {
@@ -38,6 +39,10 @@ const routes = [
     {
         path: '/reuseable-modal',
         component: ReuseableModal
+    },
+    {
+        path: '/chat',
+        component: Chat
     },
 ]
 

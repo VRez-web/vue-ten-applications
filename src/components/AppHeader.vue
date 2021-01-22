@@ -27,6 +27,7 @@ export default {
         { title: "Слайдер", to: "/slider" },
         {title:'Калькультор', to:'/calculator'},
         {title:'Модал', to:'/reuseable-modal'},
+        {title:'Чат', to:'/chat'},
       ],
     };
   },
