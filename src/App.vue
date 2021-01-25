@@ -1,5 +1,5 @@
 <template>
-  <AppHeader :isLoggedIn="isLoggedIn" @open-login-modal="isLoginOpen = true" />
+  <AppHeader @open-login-modal="isLoginOpen = true" />
 
   <router-view></router-view>
   <teleport to="body">
@@ -15,16 +15,14 @@ export default {
   data() {
     return {
       isLoginOpen: false,
-      isLoggedIn: false,
-      authUser: {},
     };
   },
   components: { AppHeader, LoginModal },
   mounted() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.isLoggedIn = true;
-        this.authUser = user;
+        this.$store.commit('setIsLoggedIn')
+        this.$store.commit('setAuthUser', user)
       } else {
         this.isLoggedIn = false;
         this.authUser = {};
