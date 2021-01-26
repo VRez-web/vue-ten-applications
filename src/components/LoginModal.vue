@@ -1,5 +1,5 @@
 <template>
-  <section class="modal">
+  <section class="modal" v-if="isLoginOpen">
     <div class="modal__bg" @click="close"></div>
     <div class="modal__wrapper">
       <div class="modal__content">
@@ -63,12 +63,18 @@ export default {
         });
     },
     close() {
-      this.$emit("close-login");
+       this.$store.commit('setLoginModal', false)
     },
 
   },
+  computed:{
+    isLoginOpen(){
+      return this.$store.state.isLoginOpen
+    }
+  },
   mounted() {
-    this.$refs.emailRef.focus();
+    // console.log(this.$refs);
+    // this.$refs.emailRef.focus();
   },
 };
 </script>

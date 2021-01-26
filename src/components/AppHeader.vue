@@ -9,7 +9,7 @@
         >{{ item.title }}</router-link
       >
       <button v-if="isLoggedIn" @click="logout">Выйти</button>
-      <button v-else @click="$emit('open-login-modal')">Войти</button>
+      <button v-else @click="openLogin">Войти</button>
     </nav>
   </header>
 </template>
@@ -45,7 +45,11 @@ export default {
       //   // An error happened.
       // });
     },
+openLogin(){
+  this.$store.commit('setLoginModal', true)
+}
   },
+
 };
 </script>
 
