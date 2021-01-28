@@ -27,6 +27,7 @@ export default {
         {title:'Калькультор', to:'/calculator'},
         {title:'Модал', to:'/reuseable-modal'},
         {title:'Чат', to:'/chat'},
+        {title:'Работа с API', to:'/user-grud'},    
       ],
     };
   },

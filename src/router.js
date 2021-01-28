@@ -7,8 +7,8 @@ import Slider from "./pages/Slider";
 import Calculator from "./pages/Calculator";
 import ReuseableModal from "./pages/ReuseableModal";
 import Chat from "./pages/Chat";
+import UserGrud from "./pages/UserCrud";
 import store from "./store/index";
-import { nextTick } from "vue";
 
 const routes = [
   {
@@ -48,6 +48,10 @@ const routes = [
     meta: {
       middleware: "auth",
     },
+  },
+  {
+    path: "/user-grud",
+    component: UserGrud,
   },
 ];
 

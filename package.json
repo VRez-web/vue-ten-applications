@@ -10,6 +10,7 @@
   "dependencies": {
     "@types/marked": "^1.2.1",
     "autoprefixer": "^10.2.3",
+    "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "core-js": "^3.8.3",
     "firebase": "^8.2.3",

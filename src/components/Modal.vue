@@ -10,6 +10,7 @@
       </div>
     </div>
   </section>
+ 
 </template>
 
 <script>
@@ -46,10 +47,13 @@ export default {
 .modal__content {
   background-color: #fff;
   box-shadow: 10px 10px 66px -25px rgba(0, 0, 0, 0.75);
-  border-radius: 15px;
-  padding: 20px;
+  border-radius: 0.9375rem;
+  padding: 1.25rem;
   z-index: 20;
   max-width: 300px;
   width: 100%;
+}
+.modal__content h1{
+  margin: 0.625rem 0 1.25rem 0;
 }
 </style>
